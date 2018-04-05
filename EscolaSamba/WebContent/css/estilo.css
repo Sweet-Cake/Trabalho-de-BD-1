@@ -1,13 +1,13 @@
 @charset "ISO-8859-1";
 .container{
-	margin:5% 0% 0% 30%;
+	margin:5% 0% 0% 35%;
 	padding-top:1%;
 	padding-bottom:3%;
 	width:30%;
 	height:40%;
 	border:1px solid cyan;
 }
-label,.botao{
+label,.botao,h1{
 	font-family:century gothic;
 }
 select{
