@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.sql.*, Dao.*, java.util.*,model.Escola"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,11 +12,21 @@
 	<h1 align="center">APURAÇÃO 2018</h1>
 <div class="container">
 	<table>
+	<form method="post">
 		<tr>
 			<td>
 				<label>ESCOLA:</label>
 				<Select>
-					<option></option>
+				<option value="1">SELECT</option>
+				<%
+					ListaEscola list=new ListaEscola();
+					List<Escola> escola = list.Lista();
+					for(Escola e: escola){
+				%>
+					<option><%=e.getNome() %></option>
+				<%
+					}
+				%>
 				</Select>
 			</td>
 	</tr>
@@ -46,6 +57,7 @@
 			<input class="botao" type="submit" value="Ver Quesito" name="verQuesito"/>
 			<input class="botao" type="submit" value="Ver Total" name="verTotal"/>
 		</td>
+		</form>
 	</tr>
 	</table>
 </div>
