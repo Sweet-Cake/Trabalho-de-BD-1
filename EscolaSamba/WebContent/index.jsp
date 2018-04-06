@@ -17,15 +17,15 @@
 			<td>
 				<label>ESCOLA:</label>
 				<Select>
-				<option value="1">SELECT</option>
+				<option>Selecione a Escola</option>
 				<%
 					ListaEscola list=new ListaEscola();
 					List<Escola> escola = list.Lista();
 					for(Escola e: escola){
 				%>
-					<option><%=e.getNome() %></option>
+					<option value="<%=e.getId()%>"><%=e.getNome()%></option>
 				<%
-					}
+				}
 				%>
 				</Select>
 			</td>
@@ -61,6 +61,13 @@
 	</tr>
 	</table>
 </div>
-
+	<table border="1px">
+		<tr>
+			<td>Nome</td>
+		</tr>
+		<tr>
+			
+		</tr>
+	</table>
 </body>
 </html>

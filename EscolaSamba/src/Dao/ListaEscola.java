@@ -12,13 +12,25 @@ public class ListaEscola {
 	
 
 		Connection c;
-		public ListaEscola() {
-			GenericDao g=new GenericDao();
-			c=g.getConnection();
-		}
+
 		//Escola e=new Escola();
 		
-		public List<Escola> Lista() {
+		
+		public List<Escola> Lista() throws SQLException {
+			Connection con = (Connection) GenericDao.getInstance().getConnection();
+			PreparedStatement pstmt = (PreparedStatement) con.prepareStatement("SELECT * FROM Escola");
+			ResultSet rs = pstmt.executeQuery();
+			List<Escola> escola = new ArrayList<Escola>();
+			while(rs.next()) { 
+				Escola e = new Escola();
+				e.setId(rs.getInt("id"));
+				e.setNome( rs.getString("nome") );
+				escola.add(e);
+			}
+			return escola;
+		}
+		
+		/*public List<Escola> Lista() {
 			List<Escola> listaEscola = new ArrayList<>();
 			try {
 				String sql = "select * from Escola";
@@ -34,5 +46,5 @@ public class ListaEscola {
 			} catch (SQLException ex) {
 			}
 			return listaEscola;
-		}
+		}*/
 }
