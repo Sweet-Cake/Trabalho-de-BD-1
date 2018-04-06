@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="java.sql.*, Dao.*, java.util.*,model.Escola"%>
+    <%@ page import="java.sql.*, Dao.*, java.util.*,model.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,10 +17,9 @@
 			<td>
 				<label>ESCOLA:</label>
 				<Select>
-				<option>Selecione a Escola</option>
 				<%
-					ListaEscola list=new ListaEscola();
-					List<Escola> escola = list.Lista();
+					Lista list=new Lista();
+					List<Escola> escola = list.ListaEscola();
 					for(Escola e: escola){
 				%>
 					<option value="<%=e.getId()%>"><%=e.getNome()%></option>
@@ -34,7 +33,15 @@
 		<td>
 			<label>JURADO:</label>
 			<Select>
-				<option></option>
+				<%
+					Lista listaJ=new Lista();
+					List<Jurado> jurado = listaJ.ListaJurado();
+					for(Jurado j: jurado){
+				%>
+					<option value="<%=j.getId()%>"><%=j.getNome()%></option>
+				<%
+				}
+				%>
 			</Select>
 		</td>
 	</tr>
@@ -42,7 +49,15 @@
 		<td>
 			<label>QUESITO:</label>
 			<Select>
-				<option></option>
+				<%
+					Lista listaQ=new Lista();
+					List<Quesito> quesito = listaQ.ListaQuesito();
+					for(Quesito q: quesito){
+				%>
+					<option value="<%=q.getId()%>"><%=q.getNome()%></option>
+				<%
+				}
+				%>
 			</Select>
 		</td>
 	</tr>
@@ -61,13 +76,5 @@
 	</tr>
 	</table>
 </div>
-	<table border="1px">
-		<tr>
-			<td>Nome</td>
-		</tr>
-		<tr>
-			
-		</tr>
-	</table>
 </body>
 </html>
