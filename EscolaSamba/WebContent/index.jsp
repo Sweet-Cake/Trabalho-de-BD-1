@@ -12,17 +12,17 @@
 	<h1 align="center">APURAÇÃO 2018</h1>
 <div class="container">
 	<table>
-	<form method="post">
+	<form method="post" action="./controleWeb">
 		<tr>
 			<td>
 				<label>ESCOLA:</label>
-				<Select>
+				<Select name="Escola">
 				<%
 					Lista list=new Lista();
 					List<Escola> escola = list.ListaEscola();
 					for(Escola e: escola){
 				%>
-					<option value="<%=e.getId()%>"><%=e.getNome()%></option>
+					<option value="<%=e.getNome()%>"><%=e.getNome()%></option>
 				<%
 				}
 				%>
@@ -31,14 +31,14 @@
 	</tr>
 	<tr>
 		<td>
-			<label>JURADO:</label>
-			<Select>
+			<label >JURADO:</label>
+			<Select name="Jurado">
 				<%
 					Lista listaJ=new Lista();
 					List<Jurado> jurado = listaJ.ListaJurado();
 					for(Jurado j: jurado){
 				%>
-					<option value="<%=j.getId()%>"><%=j.getNome()%></option>
+					<option value="<%=j.getNome()%>"><%=j.getNome()%></option>
 				<%
 				}
 				%>
@@ -48,13 +48,13 @@
 	<tr>
 		<td>
 			<label>QUESITO:</label>
-			<Select>
+			<Select name="Quesito">
 				<%
 					Lista listaQ=new Lista();
 					List<Quesito> quesito = listaQ.ListaQuesito();
 					for(Quesito q: quesito){
 				%>
-					<option value="<%=q.getId()%>"><%=q.getNome()%></option>
+					<option value="<%=q.getNome()%>"><%=q.getNome()%></option>
 				<%
 				}
 				%>
@@ -63,14 +63,14 @@
 	</tr>
 	<tr>
 		<td>
-			<input class="input"type="text" name="nota" placeholder="Nota:"/>
-			<input class="botao" type="submit" value="Inserir" name="inserir"/>
+			<input class="input"type="text" name="Nota" placeholder="Nota:"/>
+			<input class="botao" type="submit" value="Inserir" name="cmd"/>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<input class="botao" type="submit" value="Ver Quesito" name="verQuesito"/>
-			<input class="botao" type="submit" value="Ver Total" name="verTotal"/>
+			<input class="botao" type="submit" value="VerQuesito" name="cmd"/>
+			<input class="botao" type="submit" value="VerTotal" name="cmd"/>
 		</td>
 		</form>
 	</tr>

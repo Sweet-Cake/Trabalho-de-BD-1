@@ -1,11 +1,16 @@
 package controle;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Dao.Inserir;
+import model.*;
 
 /**
  * Servlet implementation class controleWeb
@@ -26,16 +31,37 @@ public class controleWeb extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String cmd = request.getParameter("cmd");
+		Inserir inserir=new Inserir();
+		if("INSERIR".equalsIgnoreCase(cmd)) {
+			Escola es=new Escola();
+			Quesito qs= new Quesito();
+			Jurado jr=new Jurado();
+			Nota nt = new Nota();
+			es.setNome(request.getParameter("Escola"));
+			qs.setNome(request.getParameter("Quesito"));
+			jr.setNome(request.getParameter("Jurado"));
+			nt.setNota(Double.parseDouble(request.getParameter("Nota")));
+			String escola=request.getParameter("Escola");
+			String nota=request.getParameter("Nota");
+			try {
+				inserir.insert(es, qs, jr, nt);
+				System.out.println("Passei por aqui");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			System.out.println("Ur a fool");
+		}
+		
 	}
 
 }
