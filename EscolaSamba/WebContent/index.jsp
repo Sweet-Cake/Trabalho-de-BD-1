@@ -26,7 +26,7 @@
 		<tr>
 			<td>
 				<label>ESCOLA:</label>
-				<Select name="Escola">
+				<Select name="Escola" id="selectEscola">
 				<%
 					Lista list=new Lista();
 					List<Escola> escola = list.ListaEscola();
@@ -160,6 +160,17 @@
 		</td>
 	</tr>
 	</table>
+	<input id="change" type="submit">
+	<script src="https://code.jquery.com/jquery-1.10.1.js" integrity="sha256-663tSdtipgBgyqJXfypOwf9ocmvECGG8Zdl3q+tk+n0=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var dd = $('#selectEscola');
+		var max_len = dd.find('option').length;
+		$('#change').click(function () {
+		    var x = dd.find('option:selected').index();
+		    if (max_len == x + 1) x = -1;
+		    dd.find('option').eq(x + 1).prop('selected', true);
+		});
+	</script>	
 </div>
 </body>
 </html>
