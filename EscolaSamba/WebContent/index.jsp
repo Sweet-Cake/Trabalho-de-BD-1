@@ -138,6 +138,19 @@
 								<th>Escola</th>
 								<th>Nota Total</th>
 							</tr>
+				<%
+					Lista listap=new Lista();
+					List<Escola> pontoT = listap.listaTotal();
+					for(Escola p: pontoT){
+				%>
+					<tr>
+						<td><%=p.getNome()%></td>
+						<td><%=p.getTotal()%></td>
+					</tr>
+				<%
+				}
+				%>
+	<tr>
 					</table>				    	
 				    </div>
 				 </div>
