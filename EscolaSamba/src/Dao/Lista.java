@@ -9,6 +9,7 @@ import java.util.List;
 
 import model.Escola;
 import model.Jurado;
+import model.Nota;
 import model.Quesito;
 public class Lista {
 	
@@ -57,6 +58,20 @@ public class Lista {
 				quesito.add(q);
 			}
 			return quesito;
+		}
+		
+		public List<Escola> listaTotal() throws SQLException {
+			Connection con = (Connection) GenericDao.getInstance().getConnection();
+			PreparedStatement pstmt = (PreparedStatement) con.prepareStatement("SELECT * FROM Escola ORDER BY totalPontos desc");
+			ResultSet rs = pstmt.executeQuery();
+			List<Escola> pontos = new ArrayList<Escola>();
+			while(rs.next()) {
+				Escola np = new Escola();
+				np.setTotal( rs.getDouble("totalPontos") );
+				np.setNome( rs.getString("nome") );
+				pontos.add(np);
+			}
+			return pontos;
 		}
 		
 		
