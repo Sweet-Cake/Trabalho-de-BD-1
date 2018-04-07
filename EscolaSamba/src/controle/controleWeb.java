@@ -3,6 +3,7 @@ package controle;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,8 +50,6 @@ public class controleWeb extends HttpServlet {
 			qs.setNome(request.getParameter("Quesito"));
 			jr.setNome(request.getParameter("Jurado"));
 			nt.setNota(Double.parseDouble(request.getParameter("Nota")));
-			String escola=request.getParameter("Escola");
-			String nota=request.getParameter("Nota");
 			try {
 				inserir.insert(es, qs, jr, nt);
 				System.out.println("Passei por aqui");
@@ -61,7 +60,8 @@ public class controleWeb extends HttpServlet {
 		}else {
 			System.out.println("Ur a fool");
 		}
-		
+		RequestDispatcher rd = request.getRequestDispatcher("./index.jsp");
+		rd.forward(request, response);
 	}
 
 }

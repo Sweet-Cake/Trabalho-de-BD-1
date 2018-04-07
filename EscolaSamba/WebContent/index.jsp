@@ -9,10 +9,21 @@
 	<title>APURAÇÃO</title>
 </head>
 <body>
+	<script language="javascript" type="text/javascript">
+		function validar() {
+		var nota = form1.Nota.value;
+		if (nota<= 0 || nota>10) {
+		alert('algo esta errado');
+		form1.Nota.focus();
+		return false;
+		}
+		}
+	</script>
+	</script>
 	<h1 align="center">APURAÇÃO 2018</h1>
 <div class="container">
 	<table>
-	<form method="post" action="./controleWeb">
+	<form method="post" action="./controleWeb" name="form1">
 		<tr>
 			<td>
 				<label>ESCOLA:</label>
@@ -64,7 +75,7 @@
 	<tr>
 		<td>
 			<input class="input"type="text" name="Nota" placeholder="Nota:"/>
-			<input class="botao" type="submit" value="Inserir" name="cmd"/>
+			<input class="botao" type="submit" value="Inserir" name="cmd" onclick="return validar()"/>
 		</td>
 	</tr>
 	<tr>
