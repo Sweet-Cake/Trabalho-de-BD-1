@@ -15,6 +15,8 @@ public class Inserir {
 		ps.setString(3,qs.getNome());
 		ps.setDouble(4,n.getNota());
 		ps.execute();
+		ps = (PreparedStatement) con.prepareStatement("exec sp_calcularTotal");
+		ps.execute();
 		ps.close();
 	}
 }
