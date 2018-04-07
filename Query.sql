@@ -5,7 +5,7 @@ use Carnaval
 create table Escola(
 	id int identity not null,
 	nome varchar(100) not null,
-	totalPontos decimal (3, 1) null,
+	totalPontos decimal (4, 1) null,
 	primary key (id)
 )
 
