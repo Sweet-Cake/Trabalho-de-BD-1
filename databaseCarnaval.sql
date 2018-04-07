@@ -67,3 +67,25 @@ insert into Jurado values
 ('3º Jurado'),
 ('4º Jurado'),
 ('5º Jurado')
+
+
+---------
+
+create procedure sp_addNota(@escola varchar(100), 
+@quesito varchar(100), @jurado varchar(100),
+ @nota decimal(3, 1))
+ as
+	 declare @idescola int,
+			 @idjurado int,
+			 @idquesito int
+
+	set @idescola = (select id from Escola where nome = @escola)
+	set @idjurado = (select id from Jurado where nome = @jurado)
+	set @idquesito = (select id from Quesito where nome = @quesito)
+	
+	if( @nota <= 10 and @nota >= 5 )
+	begin
+		insert into NotaQuesito values
+		(@idquesito, @idescola, @idjurado, @nota)
+	end
+
