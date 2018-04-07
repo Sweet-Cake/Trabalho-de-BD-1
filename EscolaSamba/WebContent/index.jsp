@@ -135,7 +135,7 @@
 				    <h1 align="center">Vendo Total:</h1>
 					<table id="myTable">
 							<tr>
-								<th>Quesito</th>
+								<th>Escola</th>
 								<th>Nota Total</th>
 							</tr>
 					</table>				    	
