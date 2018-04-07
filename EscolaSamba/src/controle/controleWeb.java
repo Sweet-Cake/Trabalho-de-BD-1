@@ -53,6 +53,8 @@ public class controleWeb extends HttpServlet {
 			try {
 				inserir.insert(es, qs, jr, nt);
 				System.out.println("Passei por aqui");
+				RequestDispatcher rd = request.getRequestDispatcher("./index.jsp");
+				rd.forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -60,8 +62,7 @@ public class controleWeb extends HttpServlet {
 		}else {
 			System.out.println("Ur a fool");
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("./index.jsp");
-		rd.forward(request, response);
+		
 	}
 
 }

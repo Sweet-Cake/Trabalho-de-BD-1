@@ -1,4 +1,4 @@
-create database projetosambao
+~[]create database projetosambao
 go
 use projetosambao
 
