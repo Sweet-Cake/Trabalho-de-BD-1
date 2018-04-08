@@ -58,7 +58,8 @@
 	<tr>
 		<td>
 			<label>QUESITO:</label>
-			<Select name="Quesito">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+			<Select name="Quesito" id="Quesito">
 				<%
 					Lista listaQ=new Lista();
 					List<Quesito> quesito = listaQ.ListaQuesito();
@@ -150,7 +151,7 @@
 				<%
 				}
 				%>
-	<tr>
+				<tr>
 					</table>				    	
 				    </div>
 				 </div>
@@ -173,7 +174,7 @@
 		</td>
 	</tr>
 	</table>
-	<input id="change" type="submit">
+	<input id="change" type="submit" value="Muda Escola">
 	<script src="https://code.jquery.com/jquery-1.10.1.js" integrity="sha256-663tSdtipgBgyqJXfypOwf9ocmvECGG8Zdl3q+tk+n0=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		var dd = $('#selectEscola');
@@ -184,6 +185,15 @@
 		    dd.find('option').eq(x + 1).prop('selected', true);
 		});
 	</script>	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){ 
+			  $('#teste').click(function(){ 
+			    alert($('#Quesito :selected').text());
+			  });
+		});
+	</script>
+	<input id="teste" type="submit" value="Teste para o quesito">
 </div>
 </body>
 </html>
