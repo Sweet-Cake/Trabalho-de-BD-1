@@ -81,7 +81,7 @@
 			</form>
 	<tr>
 		<td>
-			<button id="myBtn">VerQuesito</button>
+			<button id="myBtn" name="verQuesito">VerQuesito</button>
 				<div id="myModal" class="modal">
 				  <div class="modal-content">
 				    <span class="close">&times;</span>
@@ -124,7 +124,7 @@
 					}
 					window.onclick = function(event) {
 					    if (event.target == modal) {
-					        modal.style.display = "none";
+					        modal.style.display = "none";]iuef
 					    }
 					}
 				</script>
@@ -184,16 +184,25 @@
 		    if (max_len == x + 1) x = -1;
 		    dd.find('option').eq(x + 1).prop('selected', true);
 		});
-	</script>	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	</script>
+	<input id="teste2" type="submit" value="Testando">
+	<script src="https://code.jquery.com/jquery-1.6.2.js" integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){ 
-			  $('#teste').click(function(){ 
-			    alert($('#Quesito :selected').text());
-			  });
+		$(document).ready(function(){
+			$('#teste2').click(function(){
+				var quesito= $('#Quesito :selected').text();
+				$.ajax({
+					type:'POST',
+					data:{quesito: quesito},
+					url:'controleWeb',
+					success: function(result){
+						$('#responde').html(result);
+					}
+				});
+			});
 		});
 	</script>
-	<input id="teste" type="submit" value="Teste para o quesito">
+	<span id="responde"></span>
 </div>
 </body>
 </html>

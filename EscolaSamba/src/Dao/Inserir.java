@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import model.*;
 
 public class Inserir {
@@ -18,5 +21,17 @@ public class Inserir {
 		ps = (PreparedStatement) con.prepareStatement("exec sp_calcularTotal");
 		ps.execute();
 		ps.close();
+	}
+	
+	public List<NotaQuesito> pesquisaQuesito(String nome) throws SQLException {
+		Connection con = GenericDao.getInstance().getConnection();
+		PreparedStatement pstmt = con.prepareStatement("");
+		pstmt.setString(1, "%" + nome + "%");
+		ResultSet rs = pstmt.executeQuery();
+		List<NotaQuesito> ntQuesito = new ArrayList<NotaQuesito>();
+		while(rs.next()) { 
+		
+		}
+		return ntQuesito;
 	}
 }

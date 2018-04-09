@@ -10,6 +10,7 @@ import java.util.List;
 import model.Escola;
 import model.Jurado;
 import model.Nota;
+import model.NotaQuesito;
 import model.Quesito;
 public class Lista {
 	
@@ -73,6 +74,4 @@ public class Lista {
 			}
 			return pontos;
 		}
-		
-		
 }

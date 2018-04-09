@@ -1,7 +1,9 @@
 package controle;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,6 +41,10 @@ public class controleWeb extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/plain");
+		String quesito=request.getParameter("quesito");
+		PrintWriter out=response.getWriter();
+		out.print("hello"+ quesito);
 		String cmd = request.getParameter("cmd");
 		Inserir inserir=new Inserir();
 		if("INSERIR".equalsIgnoreCase(cmd)) {
@@ -59,8 +65,17 @@ public class controleWeb extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if ("verQuesito".equalsIgnoreCase("cmd")){
+			Inserir in= new Inserir();
+			try {
+				List<NotaQuesito> listaQuesito =in.pesquisaQuesito(request.getParameter("quesito"));
+				request.setAttribute("LISTA_QUESITO", listaQuesito);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else {
-			System.out.println("Ur a fool");
+			System.out.println("Ur a fool!");
 		}
 		
 	}
