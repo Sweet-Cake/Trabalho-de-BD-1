@@ -85,7 +85,23 @@
 				<div id="myModal" class="modal">
 				  <div class="modal-content">
 				    <span class="close">&times;</span>
+				    
 				    <h1 align="center">Vendo Quesito...</h1>
+				    <table>
+				    <tr>
+				    <td><td>
+				    <td><Select name="verNotas" id="selectNota">
+				    <%
+						for(Quesito q: quesito){
+					%>
+						<option value="<%=q.getNome()%>"><%=q.getNome()%></option>
+					<%
+					}
+					%>
+				    </Select></td>
+				    <td><input class="botao" type="submit" value="Mostrar" name="cmd"/></td>
+				    </tr>
+				    </table>
 				    	<table id="myTable">
 							<tr>
 								<th>Escola</th>
@@ -98,17 +114,26 @@
 								<th> Menor Descartada</th>
 								<th>Total</th>
 							</tr>
-							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-							</tr>
+							<%
+								Lista listan=new Lista();
+								List<NotaQuesito> nota = listan.listaNotas(1);
+								for(NotaQuesito nq: nota){
+							%>
+								<tr>
+									<td><%=nq.getEscola()%></td>
+									<td><%=nq.getN1()%></td>
+									<td><%=nq.getN2()%></td>
+									<td><%=nq.getN3()%></td>
+									<td><%=nq.getN4()%></td>
+									<td><%=nq.getN5()%></td>
+									<td><%=nq.getMaiorN()%></td>
+									<td><%=nq.getMenorN()%></td>
+									<td><%=nq.getTotal()%></td>
+								</tr>
+							<%
+							}
+							%>
+
 						</table>
 				  </div>
 				</div>
@@ -151,6 +176,7 @@
 				<%
 				}
 				%>
+
 				<tr>
 					</table>				    	
 				    </div>
