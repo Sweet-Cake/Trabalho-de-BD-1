@@ -74,4 +74,34 @@ public class Lista {
 			}
 			return pontos;
 		}
+		
+		public List<NotaQuesito> listaNotas(int quesito) throws SQLException {
+			Connection con = (Connection) GenericDao.getInstance().getConnection();
+			PreparedStatement pstmt = (PreparedStatement) con.prepareStatement("EXEC sp_vernotas ?");
+			pstmt.setInt(1, quesito);
+			ResultSet rs = pstmt.executeQuery();
+			List<NotaQuesito> notas = new ArrayList<NotaQuesito>();
+			while(rs.next()) {
+				NotaQuesito nq = new NotaQuesito();
+				nq.setEscola( rs.getString("nome") );
+				nq.setN1( rs.getDouble("n1") );
+				nq.setN2( rs.getDouble("n2") );
+				nq.setN3( rs.getDouble("n3") );
+				nq.setN4( rs.getDouble("n4") );
+				nq.setN5( rs.getDouble("n5") );
+				nq.setMaiorN( rs.getDouble("maior") );
+				nq.setMenorN( rs.getDouble("menor") );
+				nq.setTotal( rs.getDouble("total") );
+				notas.add(nq);
+			}
+			return notas;
+		}
+		
+		public void listanot() throws SQLException {
+			Connection con = (Connection) GenericDao.getInstance().getConnection();
+			PreparedStatement pstmt = (PreparedStatement) con.prepareStatement("select nota from NotaQuesito where idJurado = 1 and idQuesito = 1 and idEscola = 1");
+			ResultSet rs = pstmt.executeQuery();
+			double pt = rs.getDouble("nota");
+			System.out.println(pt);
+		}
 }
