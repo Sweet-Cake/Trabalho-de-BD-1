@@ -26,7 +26,7 @@
 		<tr>
 			<td>
 				<label>ESCOLA:</label>
-				<Select name="Escola" id="selectEscola">
+				<Select name="Escola" id="Escola">
 				<%
 					Lista list=new Lista();
 					List<Escola> escola = list.ListaEscola();
@@ -42,7 +42,7 @@
 	<tr>
 		<td>
 			<label >JURADO:</label>
-			<Select name="Jurado">
+			<Select name="Jurado" id="Jurado">
 				<%
 					Lista listaJ=new Lista();
 					List<Jurado> jurado = listaJ.ListaJurado();
@@ -75,7 +75,7 @@
 	<tr>
 		<td>
 			<input class="input"type="text" name="Nota" placeholder="Nota:"/>
-			<input class="botao" type="submit" value="Inserir" name="cmd" onclick="return validar()"/>
+			<input class="botao" id="Insert" type="submit" value="Inserir" name="cmd" onclick="return validar()"/>
 		</td>
 	</tr>
 			</form>
@@ -203,12 +203,32 @@
 	<input id="change" type="submit" value="Muda Escola">
 	<script src="https://code.jquery.com/jquery-1.10.1.js" integrity="sha256-663tSdtipgBgyqJXfypOwf9ocmvECGG8Zdl3q+tk+n0=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		var dd = $('#selectEscola');
+		var esc=$('#Escola');
+		var maxE=esc.find('option').length;
+		var dd = $('#Jurado');
 		var max_len = dd.find('option').length;
-		$('#change').click(function () {
-		    var x = dd.find('option:selected').index();
-		    if (max_len == x + 1) x = -1;
-		    dd.find('option').eq(x + 1).prop('selected', true);
+		var quesito = $('#Quesito');
+		var max = quesito.find('option').length;
+		$('#change').click(function(){
+			var ques = $("#Quesito").val();
+				//alert('olhaa' +ques);
+			if (ques == "Enredo"){
+				var x = dd.find('option:selected').index();
+				if (max_len == x + 1) x = -1;
+				dd.find('option').eq(x + 1).prop('selected', true);
+				$("#Quesito").val($("#Quesito option:first").val());
+			}else{
+				var y = quesito.find('option:selected').index();
+			    if (max == y + 1) y = -1;
+			    quesito.find('option').eq(y + 1).prop('selected', true);
+			}
+			var q = $("#Quesito").val();
+			var juri = $("#Jurado").val();
+			if (juri =="1º Jurado" && q=="Comissão de Frente" ){
+				var z = esc.find('option:selected').index();
+				if (maxE == z + 1) z = -1;
+				esc.find('option').eq(z + 1).prop('selected', true);
+			}
 		});
 	</script>
 	<input id="teste2" type="submit" value="Testando">
@@ -228,6 +248,20 @@
 			});
 		});
 	</script>
+	<!-- <script type="text/javascript">
+			var dd = $('#Jurado');
+			var max_len = dd.find('option').length;
+			$('#Insert').click(function(){
+				var quesito = $("#Quesito").val();
+				if (quesito == 9){
+						//alert('olhaa' +sala);
+					var x = dd.find('option:selected').index();
+					if (max_len == x + 1) x = -1;
+					dd.find('option').eq(x + 1).prop('selected', true);
+					$("#Quesito").val($("#Quesito option:first").val());
+				}				
+			});
+	</script>-->
 	<span id="responde"></span>
 </div>
 </body>
