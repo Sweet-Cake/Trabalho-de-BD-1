@@ -216,18 +216,17 @@
 				var x = dd.find('option:selected').index();
 				if (max_len == x + 1) x = -1;
 				dd.find('option').eq(x + 1).prop('selected', true);
-				$("#Quesito").val($("#Quesito option:first").val());
-				$("#Escola").val($("#Escola option:first").val());			
+				$("#Escola").val($("#Escola option:first").val());
+				var juri=$("#Jurado").val();
+				if(juri =="1º Jurado"){
+					var y = quesito.find('option:selected').index();
+				    if (max == y + 1) y = -1;
+				    quesito.find('option').eq(y + 1).prop('selected', true);
+				}
 			}else{
-				var y = quesito.find('option:selected').index();
-			    if (max == y + 1) y = -1;
-			    quesito.find('option').eq(y + 1).prop('selected', true);
-				var ques= $('#Quesito').val();
-				if(ques=="Comissão de Frente"){
-			    	var z = esc.find('option:selected').index();
-					if (maxE == z + 1) x = -1;
-					esc.find('option').eq(z + 1).prop('selected', true);
-			    }
+				var z = esc.find('option:selected').index();
+				if (maxE == z + 1) z = -1;
+				esc.find('option').eq(z + 1).prop('selected', true);
 			}
 		});
 	</script>
