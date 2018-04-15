@@ -18,7 +18,7 @@
 				    <td><td>
 				    <td>
 				  	
-				    <Select name="Quesito" id="selectNota">
+				    <Select name="Quesito" id="selectNota" >
 				    <%
 				    int id;
 				    String ids = (String)session.getAttribute("QUESITO");
@@ -46,7 +46,7 @@
 				    </tr>
 				    </table>
 				    <h3 align="center">Notas para <%= msg %>:</h3>
-				    	<table id="myTable">
+				    	<table id="myTable" style="margin-left:0%;">
 							<tr>
 								<th>Escola</th>
 								<th>Nota 1</th>

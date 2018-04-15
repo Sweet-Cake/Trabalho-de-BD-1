@@ -135,7 +135,6 @@
 		</td>
 	</tr>
 	</table>
-	<input id="change" type="submit" value="Muda Escola">
 	<script src="https://code.jquery.com/jquery-1.10.1.js" integrity="sha256-663tSdtipgBgyqJXfypOwf9ocmvECGG8Zdl3q+tk+n0=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		var esc=$('#Escola');
@@ -144,7 +143,7 @@
 		var max_len = dd.find('option').length;
 		var quesito = $('#Quesito');
 		var max = quesito.find('option').length;
-		$('#change').click(function(){
+		$('#Insert').click(function(){
 			var es = $("#Escola").val();
 				//alert('olhaa' +ques);
 			if (es == "Império de Casa Verde"){
