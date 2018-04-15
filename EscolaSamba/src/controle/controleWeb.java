@@ -45,9 +45,10 @@ public class controleWeb extends HttpServlet {
 		String quesito=request.getParameter("quesito");
 		PrintWriter out=response.getWriter();
 		out.print("hello"+ quesito);
+		request.getSession().setAttribute("MESSAGE", quesito);
 		String cmd = request.getParameter("cmd");
 		Inserir inserir=new Inserir();
-		if("INSERIR".equalsIgnoreCase(cmd)) {
+		/*if("INSERIR".equalsIgnoreCase(cmd)) {
 			Escola es=new Escola();
 			Quesito qs= new Quesito();
 			Jurado jr=new Jurado();
@@ -59,8 +60,7 @@ public class controleWeb extends HttpServlet {
 			try {
 				inserir.insert(es, qs, jr, nt);
 				System.out.println("Passei por aqui");
-				RequestDispatcher rd = request.getRequestDispatcher("./index.jsp");
-				rd.forward(request, response);
+				response.sendRedirect("./index.jsp");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -76,8 +76,47 @@ public class controleWeb extends HttpServlet {
 			}
 		}else {
 			System.out.println("Ur a fool!");
+			response.sendRedirect("./notas.jsp");
 		}
-		
+		//RequestDispatcher rd = request.getRequestDispatcher("./index.jsp");
+		//rd.forward(request, response);
+		*/
+		switch(cmd.toLowerCase()){
+		case "inserir":
+			Escola es=new Escola();
+			Quesito qs= new Quesito();
+			Jurado jr=new Jurado();
+			Nota nt = new Nota();
+			es.setNome(request.getParameter("Escola"));
+			qs.setNome(request.getParameter("Quesito"));
+			jr.setNome(request.getParameter("Jurado"));
+			nt.setNota(Double.parseDouble(request.getParameter("Nota")));
+			try {
+				inserir.insert(es, qs, jr, nt);
+				System.out.println("Passei por aqui");
+				response.sendRedirect("./index.jsp");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				response.sendRedirect("./index.jsp");
+			}
+			break;
+		case "verquesitos":
+			System.out.println(":3");
+			response.sendRedirect("./notas.jsp");
+			break;
+		case "mostrar":
+			request.getSession().setAttribute("QUESITO", request.getParameter("Quesito"));
+			response.sendRedirect("./notas.jsp");
+			break;
+		case "voltar":
+			response.sendRedirect("./index.jsp");
+			break;
+		default:
+			System.out.println("Ur a fool!");
+			response.sendRedirect("./index.jsp");
+			break;
+		}
 	}
 
 }
