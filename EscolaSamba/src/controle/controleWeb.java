@@ -48,6 +48,7 @@ public class controleWeb extends HttpServlet {
 		request.getSession().setAttribute("MESSAGE", quesito);
 		String cmd = request.getParameter("cmd");
 		Inserir inserir=new Inserir();
+		String msg;
 		/*if("INSERIR".equalsIgnoreCase(cmd)) {
 			Escola es=new Escola();
 			Quesito qs= new Quesito();
@@ -90,13 +91,25 @@ public class controleWeb extends HttpServlet {
 			es.setNome(request.getParameter("Escola"));
 			qs.setNome(request.getParameter("Quesito"));
 			jr.setNome(request.getParameter("Jurado"));
-			nt.setNota(Double.parseDouble(request.getParameter("Nota")));
-			try {
-				inserir.insert(es, qs, jr, nt);
-				System.out.println("Passei por aqui");
-				response.sendRedirect("./index.jsp");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			try{
+				nt.setNota(Double.parseDouble(request.getParameter("Nota")));
+				System.out.println("puchi");
+				try {
+					inserir.insert(es, qs, jr, nt);
+					System.out.println("Passei por aqui");
+					msg = String.format("Nota para a escola %s inserida com sucesso!", es.nome);
+					request.getSession().setAttribute("MENSAGEM", msg);
+					response.sendRedirect("./index.jsp");
+				} catch (SQLException e) {
+					msg = String.format("Nota já inserida");
+					request.getSession().setAttribute("MENSAGEM", msg);
+					e.printStackTrace();
+					response.sendRedirect("./index.jsp");
+				}
+			}
+			catch( NumberFormatException e){
+				msg = String.format("Valor inválido");
+				request.getSession().setAttribute("MENSAGEM", msg);
 				e.printStackTrace();
 				response.sendRedirect("./index.jsp");
 			}
@@ -107,6 +120,7 @@ public class controleWeb extends HttpServlet {
 			break;
 		case "mostrar":
 			request.getSession().setAttribute("QUESITO", request.getParameter("Quesito"));
+			//request.getSession().setAttribute("NOME", request.getParameter("Quesito"));
 			response.sendRedirect("./notas.jsp");
 			break;
 		case "voltar":
