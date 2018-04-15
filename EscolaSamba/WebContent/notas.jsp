@@ -21,14 +21,17 @@
 				    <Select name="Quesito" id="selectNota">
 				    <%
 				    int id;
-				    String msg = (String)session.getAttribute("QUESITO");
-				    if (msg == null)
+				    String ids = (String)session.getAttribute("QUESITO");
+				    String msg = "";
+				    if (ids == null)
 				    	id = 1;
 				    else
-				    	id = Integer.parseInt(msg);
+				    	id = Integer.parseInt(ids);
 				    Lista listaQ=new Lista();
 					List<Quesito> quesito = listaQ.ListaQuesito();
 					for(Quesito q: quesito){
+						 if (id == q.getId())
+		   					 msg = q.getNome();
 					%>
 						<option value="<%=q.getId()%>"><%=q.getNome()%></option>
 					<%
@@ -42,6 +45,7 @@
 				    </td>
 				    </tr>
 				    </table>
+				    <h3 align="center">Notas para <%= msg %>:</h3>
 				    	<table id="myTable">
 							<tr>
 								<th>Escola</th>
@@ -51,11 +55,11 @@
 								<th>Nota 4</th>
 								<th>Nota 5</th>
 								<th>Maior Descartada</th>
-								<th> Menor Descartada</th>
+								<th>Menor Descartada</th>
 								<th>Total</th>
 							</tr>
 							<%
-								Lista listan=new Lista();
+							    Lista listan=new Lista();
 								List<NotaQuesito> nota = listan.listaNotas(id);
 								for(NotaQuesito nq: nota){
 							%>
