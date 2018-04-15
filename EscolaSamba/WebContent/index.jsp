@@ -13,13 +13,20 @@
 		function validar() {
 		var nota = form1.Nota.value;
 		if (nota< 5 || nota>10) {
-		alert('algo esta errado');
+		$(alerta).text('Valor fora do intervalo permitido');
 		form1.Nota.focus();
 		return false;
 		}
 		}
 	</script>
 	<h1 align="center">APURAÇÃO 2018</h1>
+	<% 
+	String msg = (String)session.getAttribute("MENSAGEM");
+	if (msg != null) {%>
+	<p id="alerta" align="center" style="background-color:cyan;"><%= msg %></p>
+	<% }
+	session.setAttribute("MENSAGEM", null);
+	%>
 <div class="container">
 	<table>
 	<form method="post" action="./controleWeb" name="form1">
