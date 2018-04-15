@@ -78,82 +78,10 @@
 			<input class="botao" id="Insert" type="submit" value="Inserir" name="cmd" onclick="return validar()"/>
 		</td>
 	</tr>
-			</form>
 	<tr>
 		<td>
-			<button id="myBtn" name="verQuesito">VerQuesito</button>
-				<div id="myModal" class="modal">
-				  <div class="modal-content">
-				    <span class="close">&times;</span>
-				    
-				    <h1 align="center">Vendo Quesito...</h1>
-				    <table>
-				    <tr>
-				    <td><td>
-				    <td><Select name="verNotas" id="selectNota">
-				    <%
-						for(Quesito q: quesito){
-					%>
-						<option value="<%=q.getNome()%>"><%=q.getNome()%></option>
-					<%
-					}
-					%>
-				    </Select></td>
-				    <td><input class="botao" type="submit" value="Mostrar" name="cmd"/></td>
-				    </tr>
-				    </table>
-				    	<table id="myTable">
-							<tr>
-								<th>Escola</th>
-								<th>Nota 1</th>
-								<th>Nota 2</th>
-								<th>Nota 3</th>
-								<th>Nota 4</th>
-								<th>Nota 5</th>
-								<th>Maior Descartada</th>
-								<th> Menor Descartada</th>
-								<th>Total</th>
-							</tr>
-							<%
-								Lista listan=new Lista();
-								List<NotaQuesito> nota = listan.listaNotas(1);
-								for(NotaQuesito nq: nota){
-							%>
-								<tr>
-									<td><%=nq.getEscola()%></td>
-									<td><%=nq.getN1()%></td>
-									<td><%=nq.getN2()%></td>
-									<td><%=nq.getN3()%></td>
-									<td><%=nq.getN4()%></td>
-									<td><%=nq.getN5()%></td>
-									<td><%=nq.getMaiorN()%></td>
-									<td><%=nq.getMenorN()%></td>
-									<td><%=nq.getTotal()%></td>
-								</tr>
-							<%
-							}
-							%>
-
-						</table>
-				  </div>
-				</div>
-				<script>
-					var modal = document.getElementById('myModal');
-					var btn = document.getElementById("myBtn");
-					var span = document.getElementsByClassName("close")[0];
-					btn.onclick = function() {
-					    modal.style.display = "block";
-					}
-					span.onclick = function() {
-					    modal.style.display = "none";
-					}
-					window.onclick = function(event) {
-					    if (event.target == modal) {
-					        modal.style.display = "none";
-					    }
-					}
-				</script>
-				
+			<input class="botao" id="visualizar" type="submit" value="VerQuesitos" name="cmd"/>
+			</form>
 			<button id="myBtn2">Ver Total</button>
 				<div id="myModal2" class="modal">
 				  <div class="modal-content">
@@ -230,7 +158,7 @@
 			}
 		});
 	</script>
-	<input id="teste2" type="submit" value="Testando">
+	<!--<input id="teste2" type="submit" value="Testando">
 	<script src="https://code.jquery.com/jquery-1.6.2.js" integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -246,7 +174,7 @@
 				});
 			});
 		});
-	</script>
+	</script>-->
 	<!-- <script type="text/javascript">
 			var dd = $('#Jurado');
 			var max_len = dd.find('option').length;
