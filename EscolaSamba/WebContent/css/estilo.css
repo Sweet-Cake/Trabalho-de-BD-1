@@ -31,12 +31,26 @@ select{
 table{
 	margin-left:15%;
 }
+.tabela{
+	margin-left:25%;
+}
+.tabela th, .tabela td{
+	border:1px solid cyan;
+	font-family:century gothic;
+}
 #myTable th, #myTable td{
 	border:1px solid cyan;
 	font-family:century gothic;
 }
 #myTable{
 	margin-left:25%;
+}
+#resultado2{
+	margin-left:25%;
+}
+#resultado2 th, #resultado2 td{
+	border:1px solid cyan;
+	font-family:century gothic;
 }
 td{
 	width:250px;
