@@ -7,29 +7,47 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css"/>
 	<title>APURAÇÃO</title>
-</head>
-<body>
+	<script src="https://code.jquery.com/jquery-1.6.2.js" integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck=" crossorigin="anonymous"></script>
+	<script text="text/javascript">
+			$(document).ready(function(){
+				$('#Insert').click(function(){
+					var Escola = $("#Escola option:selected").val();
+					var Quesito= $("#Quesito option:selected").val();
+					var Jurado = $("#Jurado option:selected").val();
+					var Nota = $('#Nota').val();
+					$.ajax({
+						type:'POST',
+						data:{Escola: Escola,
+							Quesito: Quesito,
+							Jurado: Jurado,
+							Nota: Nota
+						},
+						url:'controleWeb',
+						success: function(result){
+							$('#alerta').html(result);
+						}
+					});
+				});
+			});
+	</script>
 	<script language="javascript" type="text/javascript">
 		function validar() {
-		var nota = form1.Nota.value;
-		if (nota< 5 || nota>10) {
-		$(alerta).text('Valor fora do intervalo permitido');
-		form1.Nota.focus();
-		return false;
+		var nota = formE.Nota.value;
+			if (nota< 5 || nota>10) {
+			alert('Nota Fora do Intervalo');
+			formE.Nota.focus();
+			return false;
 		}
 		}
 	</script>
-	<h1 align="center">APURAÇÃO 2018</h1>
-	<% 
-	String msg = (String)session.getAttribute("MENSAGEM");
-	if (msg != null) {%>
-	<p id="alerta" align="center" style="background-color:cyan;"><%= msg %></p>
-	<% }
-	session.setAttribute("MENSAGEM", null);
-	%>
+	
+</head>
+<body>
+	<p id="alerta" align="center" style="background-color:cyan;"></p>
 <div class="container">
 	<table>
-	<form method="post" action="./controleWeb" name="form1">
+	<form name="formE">
+		<!--<span id="resul"></span>-->
 		<tr>
 			<td>
 				<label>ESCOLA:</label>
@@ -81,15 +99,17 @@
 	</tr>
 	<tr>
 		<td>
-			<input class="input"type="text" name="Nota" placeholder="Nota:"/>
-			<input class="botao" id="Insert" type="submit" value="Inserir" name="cmd" onclick="return validar()"/>
+			<input class="input"type="text" name="Nota" id="Nota" placeholder="Nota:"/>
+			<input class="botao" id="Insert" type="button" value="Inserir" name="cmd" onclick="return validar()"/>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<input class="botao" id="visualizar" type="submit" value="VerQuesitos" name="cmd"/>
 			</form>
-			<button id="myBtn2">Ver Total</button>
+			<form method="POST" action="./controleBotao" style="display:inline-block;">
+				<input class="botao" id="visualizar" type="submit" value="VerQuesitos" name="cmd"/>
+			</form>
+				<button id="myBtn2">Ver Total</button>
 				<div id="myModal2" class="modal">
 				  <div class="modal-content">
 				    <span class="close2">&times;</span>
@@ -164,38 +184,6 @@
 			}
 		});
 	</script>
-	<!--<input id="teste2" type="submit" value="Testando">
-	<script src="https://code.jquery.com/jquery-1.6.2.js" integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck=" crossorigin="anonymous"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#teste2').click(function(){
-				var quesito= $('#Quesito :selected').text();
-				$.ajax({
-					type:'POST',
-					data:{quesito: quesito},
-					url:'controleWeb',
-					success: function(result){
-						$('#responde').html(result);
-					}
-				});
-			});
-		});
-	</script>-->
-	<!-- <script type="text/javascript">
-			var dd = $('#Jurado');
-			var max_len = dd.find('option').length;
-			$('#Insert').click(function(){
-				var quesito = $("#Quesito").val();
-				if (quesito == 9){
-						//alert('olhaa' +sala);
-					var x = dd.find('option:selected').index();
-					if (max_len == x + 1) x = -1;
-					dd.find('option').eq(x + 1).prop('selected', true);
-					$("#Quesito").val($("#Quesito option:first").val());
-				}				
-			});
-	</script>-->
-	<span id="responde"></span>
 </div>
 </body>
 </html>

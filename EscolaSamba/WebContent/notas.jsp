@@ -10,7 +10,7 @@
 <title>VENDO QUESITOS</title>
 </head>
 <body>
-  <form method="post" action="./controleWeb">
+  <form method="post" action="./controleBotao">
  					<input class="botao" id="voltar" type="submit" value="Voltar" name="cmd"/>
  					<h1 align="center">Vendo Quesito...</h1>
 				    <table>
