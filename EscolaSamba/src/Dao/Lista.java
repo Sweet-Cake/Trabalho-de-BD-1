@@ -61,28 +61,47 @@ public class Lista {
 			return quesito;
 		}
 		
-		public List<Escola> listaTotal() throws SQLException {
+		public String listaTotal() throws SQLException {
 			Connection con = (Connection) GenericDao.getInstance().getConnection();
 			PreparedStatement pstmt = (PreparedStatement) con.prepareStatement("SELECT * FROM Escola ORDER BY totalPontos desc");
 			ResultSet rs = pstmt.executeQuery();
 			List<Escola> pontos = new ArrayList<Escola>();
+			//String msg = "<tr><td>ESCOLA</td><td>PONTUAÇÃO</td></tr>";
+			StringBuilder msg = new StringBuilder();
+			msg.append("<tr><td>ESCOLA</td><td>PONTUAÇÃO</td></tr>");
 			while(rs.next()) {
-				Escola np = new Escola();
-				np.setTotal( rs.getDouble("totalPontos") );
-				np.setNome( rs.getString("nome") );
-				pontos.add(np);
+				/*Escola np = new Escola();
+				msg = msg + "<tr>";
+				msg = msg + "<td>" + rs.getString("nome") + "</td>";
+				msg = msg + "<td>" + rs.getDouble("totalPontos") + "</td>\n</tr>";
+			*/
+			msg.append("<tr>");	
+			msg.append("<td>" + rs.getString("nome") + "</td>");
+			msg.append("<td>" + rs.getDouble("totalPontos") + "</td>\n</tr>");
 			}
-			return pontos;
+			return msg.toString();
 		}
 		
-		public List<NotaQuesito> listaNotas(int quesito) throws SQLException {
+		public String listaNotas(int quesito) throws SQLException {
 			Connection con = (Connection) GenericDao.getInstance().getConnection();
 			PreparedStatement pstmt = (PreparedStatement) con.prepareStatement("EXEC sp_vernotas ?");
 			pstmt.setInt(1, quesito);
 			ResultSet rs = pstmt.executeQuery();
 			List<NotaQuesito> notas = new ArrayList<NotaQuesito>();
+			StringBuilder msg = new StringBuilder();
+			msg.append("<tr>" +
+							"<td>Escola</td>" +
+							"<td>Nota 1</td>" +
+							"<td>Nota 2</td>" +
+							"<td>Nota 3</td>" +
+							"<td>Nota 4</td>" +
+							"<td>Nota 5</td>" +
+							"<td>Maior Descartada</td>" +
+							"<td>Menor Descartada</td>" +
+							"<td>Total</td>" +
+							"</tr>");
 			while(rs.next()) {
-				NotaQuesito nq = new NotaQuesito();
+				/*NotaQuesito nq = new NotaQuesito();
 				nq.setEscola( rs.getString("nome") );
 				nq.setN1( rs.getDouble("n1") );
 				nq.setN2( rs.getDouble("n2") );
@@ -93,8 +112,28 @@ public class Lista {
 				nq.setMenorN( rs.getDouble("menor") );
 				nq.setTotal( rs.getDouble("total") );
 				notas.add(nq);
+				*/
+				/*msg = msg +"<tr><td>" + rs.getString("nome") + "</td>";
+				msg = msg + "<td>" + rs.getDouble("n1") + "</td>";
+				msg = msg + "<td>" + rs.getDouble("n2") + "</td>";
+				msg = msg + "<td>" + rs.getDouble("n3") + "</td>";
+				msg = msg + "<td>" + rs.getDouble("n4") + "</td>";
+				msg = msg + "<td>" + rs.getDouble("n5") + "</td>";
+				msg = msg + "<td>" + rs.getDouble("maior") + "</td>";
+				msg = msg + "<td>" + rs.getDouble("menor") + "</td>";
+				msg = msg +"<td>" + rs.getDouble("total") + "</td></tr>";
+				*/
+				msg.append("<tr><td>" + rs.getString("nome") + "</td>");
+				msg.append("<td>" + rs.getDouble("n1") + "</td>");
+				msg.append("<td>" + rs.getDouble("n2") + "</td>");
+				msg.append("<td>" + rs.getDouble("n3") + "</td>");
+				msg.append("<td>" + rs.getDouble("n4") + "</td>");
+				msg.append("<td>" + rs.getDouble("n5") + "</td>");
+				msg.append("<td>" + rs.getDouble("maior") + "</td>");
+				msg.append("<td>" + rs.getDouble("menor") + "</td>");
+				msg.append("<td>" + rs.getDouble("total") + "</td></tr>");
 			}
-			return notas;
+			return msg.toString();
 		}
 		
 		public void listanot() throws SQLException {
@@ -104,4 +143,5 @@ public class Lista {
 			double pt = rs.getDouble("nota");
 			System.out.println(pt);
 		}
+
 }
