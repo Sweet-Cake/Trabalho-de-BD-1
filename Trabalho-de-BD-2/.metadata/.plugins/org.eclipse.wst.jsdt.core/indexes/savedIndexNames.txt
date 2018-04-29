@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+C:\Users\queee\OneDrive\Documentos\bd\Trabalho-de-BD-2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2113258874.index
+2986402048.index
+2766896970.index
+3473194854.index
+2682468391.index
+3994722688.index
+2572768963.index

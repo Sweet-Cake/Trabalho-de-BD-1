@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+*{
+	margin:0;
+	padding:0;
+}
+head{
+	width:100%;
+	background-color:yellow;
+	height:100px;
+}
+p{
+	color:blue;
+}
